@@ -38,22 +38,48 @@
 				<input type="submit" value="Zaloguj">
 				
 			</form>
-<?php
+			<?php
+
 
 function token($dlugosc = 10) {
     $znaki = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
     $znakiDlugosc = strlen($znaki);
     $randomString = '';
+    
+
     for ($i = 0; $i < $dlugosc; $i++) {
-        $randomString .= $znaki[rand(0, $znakiDlugosc - 1)];
+        $randomString .= $znaki[random_int(0, $znakiDlugosc - 1)];
     }
+    
     return $randomString;
 }
 
-echo "<p>Jednorazowy token dostępu do skarbca: " . token(10) . "</p>";
 
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    if (isset($_POST['login']) && isset($_POST['haslo'])) {
+        
+        $login = $_POST['login'];
+        $haslo = $_POST['haslo'];
+
+
+        if ($login == "pawlo" && $haslo == "napadnabank") {
+            echo "Witaj Paweł, weź sie do roboty leniu<br>";
+			
+			echo "<p>Jednorazowy token dostępu do skarbca: " . token(10) . "</p>";
+
+        } else if ($login == "gawlo" && $haslo == "likeaboss") {
+            echo "Witaj szefie wszystkich szefów <br>";
+            
+
+            echo "<p>Jednorazowy token dostępu do skarbca: " . token(10) . "</p>";
+
+        } else {
+            echo "Niepoprawny login lub hasło!";
+        }
+    }
+}
 ?>
-
 		</article>
 		
 	</main>
