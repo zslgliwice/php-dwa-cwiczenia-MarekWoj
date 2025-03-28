@@ -16,62 +16,53 @@
 		<article>
 
 			<header>
-			
-				<h1>Podsumowanie zamówienia korepetycji</h1>
+
+            <form action="korepetycje.php" method="post">
+                    <label for="imie">Podaj imię:</label>
+                    <br><br>
+                    <input type="text" id="imie" name="imie">
+                    <br><br>
+
+                    <label for="przedmiot">Wybierz przedmiot:</label>
+                    <br><br>
+                    <select id="przedmiot" name="przedmiot">
+                        <option value="pol">Język Polski</option>
+                        <option value="mat">Matematyka</option>
+                        <option value="wos">Wiedza o Społeczeństwie</option>
+                    </select>
+                    <br><br>
+
+                    <label for="liczbaLekcji">Podaj ilość lekcji:</label>
+                    <br><br>
+                    <input type="number" id="liczbaLekcji" name="liczbaLekcji">
+                    <br><br>
+
+                    <label>Dodatkowe notatki?</label><br>
+                    <input type="radio" name="notatki" value="tak"> Tak
+                    <input type="radio" name="notatki" value="nie"> Nie
+                    <br><br>
+
+                    <input type="submit" value="Potwierdź">
+                </form>
+
 
 			</header>
 			
-<?php			
-		
-       
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+<?php	
+  
 
-       
-            $imie = $_POST["imie"];
-            $przedmiot = $_POST["przedmiot"];
-            $liczbaLekcji = $_POST["liczbaLekcji"];
-            $notatki = $_POST["notatki"];
 
-        
-            $cena_przedmiot = 0;
-            $nazwa_przedmiot = "";
-
-            if ($przedmiot == "pol") {
-                $cena_przedmiot = 50; 
-                $nazwa_przedmiot = "Język Polski";
-            } elseif ($przedmiot == "mat") {
-                $cena_przedmiot = 60; 
-                $nazwa_przedmiot = "Matematyka";
-            } elseif ($przedmiot == "wos") {
-                $cena_przedmiot = 45; 
-                $nazwa_przedmiot = "Wiedza o Społeczeństwie";
-            }
-            
-            
-            
-
+     
       
-            $oplaty = 0;
-            if ($notatki == "tak") {
-                $oplaty = 5 * $liczbaLekcji; 
-            }
-
-            if($imie != NULL && $liczbaLekcji != NULL) {
-                $cena = ($cena_przedmiot * $liczbaLekcji) + $oplaty;
-                
-                echo "<p>Imię: " . $imie . "</p>";
-                echo "<p>Przedmiot:" . $nazwa_przedmiot . "</p>";
-                echo "<p>Liczba lekcji: " . $liczbaLekcji . "</p>";
-                echo "<p>Całkowita cena: " . $cena . " zł</p>";
-
-            } else {
-                echo "<p>Podaj poprawne dane.</p>";
-            }
-        }
+    
+?>
 
 
-			
-?>			
+
+    
+    
+
+
 		</article>
 		
 	</main>
